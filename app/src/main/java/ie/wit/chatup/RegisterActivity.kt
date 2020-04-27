@@ -53,8 +53,8 @@ mAuth.createUserWithEmailAndPassword(email, password). addOnCompleteListener{tas
     val userHashMap = HashMap<String, Any>()
     userHashMap["uid"] = firebaseUserID
     userHashMap["username"] = username
-    userHashMap["profile"] = "https://firebasestorage.googleapis.com/v0/b/chatup-db93d.appspot.com/o/Profile.png?alt=media&token=a84ffca1-c71c-4c6b-97a4-20b9c0eb95f6"
-    userHashMap["cover"] = "https://firebasestorage.googleapis.com/v0/b/chatup-db93d.appspot.com/o/cover.jpg?alt=media&token=b92a2e4d-0ea9-4770-bd26-73797e0304fb"
+    userHashMap["profile"] = "https://firebasestorage.googleapis.com/v0/b/chatup-db93d.appspot.com/o/profile.jpg?alt=media&token=bc6fec06-f7a4-4050-9578-5ec92aee71a6"
+    userHashMap["cover"] = "https://firebasestorage.googleapis.com/v0/b/chatup-db93d.appspot.com/o/cover.jpg?alt=media&token=784115a5-35ff-410b-a769-2f2e6561b002"
     userHashMap["status"] = "offline"
     userHashMap["search"] = username.toLowerCase()
     userHashMap["facebook"] = "https://m.facebook.com"
