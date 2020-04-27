@@ -1,10 +1,12 @@
 package ie.wit.chatup.AdapterClasses
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import ie.wit.chatup.ModelClasses.Users
 import ie.wit.chatup.R
@@ -25,7 +27,9 @@ class UserAdapter (
             this.isChatCheck = isChatCheck
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+            val view: View = LayoutInflater.from(mContext).inflate(R.layout.user_search_item_layout, viewGroup, false)
+            return UserAdapter.ViewHolder(view)
 
         }
 
@@ -34,7 +38,9 @@ return mUsers.size
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+            val user: Users = mUsers[position]
+            holder.userNameTxt.text = user!!.getUserName()
+            Picasso.get().load(user.getProfile()).placeholder(R.drawable.profile).into(holder.profileImageView)
         }
 
         class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
