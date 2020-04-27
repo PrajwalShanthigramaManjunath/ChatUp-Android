@@ -18,15 +18,15 @@ class UserAdapter (
         {
             var userNameTxt: TextView
             var profileImageView: CircleImageView
-            var onlineTextView: TextView                              // online text view
-            var ofllineTextView: TextView                            // offline text view
+            var onlineImageView: CircleImageView                              // online view
+            var ofllineImageView: CircleImageView                            // offline view
             var lastMessageTxt: TextView
 init{
     userNameTxt = itemView.findViewById(R.id.username)
-    userNameTxt = itemView.findViewById(R.id.username)
-    userNameTxt = itemView.findViewById(R.id.username)
-    userNameTxt = itemView.findViewById(R.id.username)
-    userNameTxt = itemView.findViewById(R.id.username)
+    profileImageView = itemView.findViewById(R.id.profile_image)
+    onlineImageView = itemView.findViewById(R.id.image_online)
+    ofllineImageView = itemView.findViewById(R.id.image_offline)
+    lastMessageTxt = itemView.findViewById(R.id.message_last)
 
 }
         }
