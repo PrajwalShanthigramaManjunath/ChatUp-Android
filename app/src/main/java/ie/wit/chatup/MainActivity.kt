@@ -16,6 +16,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
+import ie.wit.chatup.Fragments.ChatsFragment
+import ie.wit.chatup.Fragments.SearchFragment
+import ie.wit.chatup.Fragments.SettingsFragment
 import ie.wit.chatup.ModelClasses.Users
 
 import kotlinx.android.synthetic.main.activity_main.*

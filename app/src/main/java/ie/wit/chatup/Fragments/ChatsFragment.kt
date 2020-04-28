@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import ie.wit.chatup.R
 
 class ChatsFragment : Fragment() {
-    private var listener: ChatsFragment.OnFragmentInteractionListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
