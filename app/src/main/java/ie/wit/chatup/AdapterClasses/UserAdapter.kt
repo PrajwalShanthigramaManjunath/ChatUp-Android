@@ -65,6 +65,7 @@ return mUsers.size
 
                     }
                 })
+                builder.show()
 
             }
         }
