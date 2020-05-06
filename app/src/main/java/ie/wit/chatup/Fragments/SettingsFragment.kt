@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package ie.wit.chatup.Fragments
 
 import android.app.Activity
