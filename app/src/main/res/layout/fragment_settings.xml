@@ -11,19 +11,19 @@
         android:id="@+id/cv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="18dp"
+            android:padding="10dp"
             >
 
             <ImageView
                 android:id="@+id/cover_image_settings"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="200dp"
                 android:src="@drawable/cover"
                 android:scaleType="centerCrop"
                 >
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/cv1"
         android:gravity="center"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorProfile"
         android:layout_marginTop="40dp"
         android:orientation="horizontal"
         android:padding="6dp"

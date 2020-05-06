@@ -115,11 +115,11 @@ class SettingsFragment : Fragment() {
 
         if (socialChecker == "website")
         {
-            editText.hint = "e.g www.google.com"
+            editText.hint = "e.g https://github.com/PrajwalShanthigramaManjunath/programmers-connect"
         }
         else
         {
-            editText.hint = "e.g alizeb438"
+            editText.hint = "e.g wal123"
         }
         builder.setView(editText)
 
