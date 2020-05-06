@@ -77,7 +77,7 @@ class SearchFragment : Fragment() {
 
                 if (searchEditText!!.text.toString() == "") {
                     for (snapshot in p0.children) {
-                        val user: Users? = p0.getValue(Users::class.java)
+                        val user: Users? = snapshot.getValue(Users::class.java)
 
 
                         // to make user profile not seen in search list
@@ -88,6 +88,7 @@ class SearchFragment : Fragment() {
 
                 }
                 userAdapter = UserAdapter(context!!, mUsers!!, false)
+                recyclerView!!.adapter = userAdapter
 
                 //need to set useradapter on recyclerview
                 recyclerView!!.adapter = userAdapter

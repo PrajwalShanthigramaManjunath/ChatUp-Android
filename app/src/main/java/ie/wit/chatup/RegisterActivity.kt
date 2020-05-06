@@ -58,7 +58,7 @@ mAuth.createUserWithEmailAndPassword(email, password). addOnCompleteListener{tas
     userHashMap["status"] = "offline"
     userHashMap["search"] = username.toLowerCase()
     userHashMap["facebook"] = "https://m.facebook.com"
-    userHashMap["instagram"] = "https://m.facebook.com"
+    userHashMap["instagram"] = "https://m.instagram.com"
     userHashMap["website"] = "https://www.google.com"
 
     refUsers.updateChildren(userHashMap)

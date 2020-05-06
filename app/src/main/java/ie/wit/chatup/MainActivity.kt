@@ -19,7 +19,10 @@ import com.squareup.picasso.Picasso
 import ie.wit.chatup.Fragments.ChatsFragment
 import ie.wit.chatup.Fragments.SearchFragment
 import ie.wit.chatup.Fragments.SettingsFragment
+import ie.wit.chatup.ModelClasses.Chat
 import ie.wit.chatup.ModelClasses.Users
+import androidx.appcompat.widget.DialogTitle
+import ie.wit.chatup.ModelClasses.Chatlist
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -40,12 +43,42 @@ class MainActivity : AppCompatActivity() {
         supportActionBar!!.title = ""
         val tabLayout: TabLayout = findViewById(R.id.tab_layout)
         val viewPager: ViewPager = findViewById(R.id.view_pager)
-        val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
-        viewPagerAdapter.addFragments(ChatsFragment(), "Chats")
-        viewPagerAdapter.addFragments(SearchFragment(), "Search")
-        viewPagerAdapter.addFragments(SettingsFragment(), "Settings")
-        viewPager.adapter = viewPagerAdapter
-        tabLayout.setupWithViewPager(viewPager)
+        val ref = FirebaseDatabase.getInstance().reference.child("Chats")
+        ref!!.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(p0: DataSnapshot)
+            {
+                val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
+
+                var countUnreadMessages = 0
+
+                for (dataSnapshot in p0.children)
+                {
+                    val chat = dataSnapshot.getValue(Chat::class.java)
+                    if (chat!!.getReceiver().equals(firebaseUser!!.uid) && !chat.isIsSeen())
+                    {
+                        countUnreadMessages += 1
+                    }
+                }
+
+                if (countUnreadMessages == 0)
+                {
+                    viewPagerAdapter.addFragments(ChatsFragment(), "Chats")
+                }
+                else
+                {
+                    viewPagerAdapter.addFragments(ChatsFragment(), "($countUnreadMessages) Chats")
+                }
+
+                viewPagerAdapter.addFragments(SearchFragment(), "Search")
+                viewPagerAdapter.addFragments(SettingsFragment(), "Settings")
+                viewPager.adapter = viewPagerAdapter
+                tabLayout.setupWithViewPager(viewPager)
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+        })
 
         //display username and profile picture
         refUsers!!.addValueEventListener(object : ValueEventListener {
@@ -85,7 +118,8 @@ class MainActivity : AppCompatActivity() {
         }
         return false
     }
-    internal class ViewPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager)
+    internal class ViewPagerAdapter(fragmentManager: FragmentManager) :
+    FragmentPagerAdapter(fragmentManager)
     {
         private val fragments: ArrayList<Fragment>
         private val titles: ArrayList<String>
@@ -107,8 +141,28 @@ class MainActivity : AppCompatActivity() {
         }
         override fun getPageTitle(position: Int): CharSequence? {
             return titles[position]
-        } }
+        }
     }
+private fun updateStatus(status: String)
+{
+    val ref = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUser!!.uid)
 
+    val hashMap = HashMap<String, Any>()
+    hashMap["status"] = status
+    ref!!.updateChildren(hashMap)
+}
+
+override fun onResume() {
+    super.onResume()
+
+    updateStatus("online")
+}
+
+override fun onPause() {
+    super.onPause()
+
+    updateStatus("offline")
+}
+}
 
 
